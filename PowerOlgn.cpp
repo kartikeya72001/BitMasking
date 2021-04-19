@@ -17,9 +17,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-float power(float x, int y)
+int power(float x, int y)
 {
-	float temp;
+	int temp;
 	if(y == 0)
 		return 1;
 	temp = power(x, y / 2);
@@ -34,10 +34,24 @@ float power(float x, int y)
 	}
 }
 
+int FastExponentiation(int a, int n){
+	int ans = 1;
+	while(n>0){
+		int last_bit = (n&1);
+		if(last_bit){
+			ans=ans*a;
+		}
+		a*=a;
+		n>>=1;
+	}
+	return ans;
+}
+
 int main()
 {
 	int x, y;
 	cin>>x>>y;
-	cout << power(x, y);
+	cout << power(x, y)<<endl;
+	cout << FastExponentiation(x,y);
 	return 0;
-} 
+}
